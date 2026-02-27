@@ -22,8 +22,8 @@ io.on("connection",(socket)=>{
     socket.on("join-user",username=>{
         console.log(`${username} joined socket connection`);
         allusers[username] = { username,id:socket.id };
-        io.emit("Joined", allusers);
-    })
+        io.emit("joined", allusers);
+    });
 });
 
 server.listen(9000,()=>{
