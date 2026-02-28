@@ -81,7 +81,10 @@ socket.on("joined", allusers => {
 const startCall = async (user)=>{
     console.log({user});
     const pc = PeerConnection.getInstance();
-    const offer = await pc.createOffer() 
+    const offer = await pc.createOffer();
+    console.log({ offer });
+    await pc.setLocalDescription(offer);
+    socket.emit("offer",{from: username.value,to: user , offer: pc.localDescription});
 }
 
 const startMyVideo =async  ()=>{
