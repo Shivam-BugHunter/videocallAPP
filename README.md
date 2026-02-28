@@ -76,3 +76,10 @@ answer	Callee answers the offer
 icecandidate	WebRTC ICE candidates exchange
 end-call	Caller ends the call
 call-ended	Notify disconnection
+
+
+📌 Tips
+
+✅ Ensure your browser supports WebRTC
+✅ Test with HTTPS (some browsers restrict media without a secure context)
+✅ Open in different tabs/devices to simulate two peers
