@@ -81,7 +81,11 @@ socket.on("offer",async ({from,to,offer})=>{
     const pc = PeerConnection.getInstance();
     await pc.setRemoteDescription(offer);
     const answer = await pc.createAnswer();
-    await pc.setLocalDescription(answer);
+    await pc.setLocalDescription("answer",{from,to,answer: pc.localDescription});  
+});
+socket.on("answer",async ({from,to,answer})=>{
+    const pc = PeerConnection.getInstance();
+    await pc.setRemotDescription(answer);
 })
 
 const startCall = async (user)=>{

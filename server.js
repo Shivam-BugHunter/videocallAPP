@@ -27,7 +27,10 @@ io.on("connection",(socket)=>{
     socket.on("offer",(from,to,offer)=>{
         console.log({from,to,offer});
         io.to(allusers[to].id).emit("offer",offer);
-    })
+    });
+    socket.on("answer",({from,to,answer})=>{
+        io.to(allusers[from].id).emit("answer",{from,to,answer});
+    });
 });
 
 server.listen(9000,()=>{
