@@ -24,6 +24,10 @@ io.on("connection",(socket)=>{
         allusers[username] = { username,id:socket.id };
         io.emit("joined", allusers);
     });
+    socket.on("offer",(from,to,offer)=>{
+        console.log({from,to,offer});
+        io.to(allusers[to].id).emit("offer",offer);
+    })
 });
 
 server.listen(9000,()=>{

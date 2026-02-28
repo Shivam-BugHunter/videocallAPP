@@ -54,7 +54,7 @@ createUserBtn.addEventListener("click",(e)=>{
 socket.on("joined", allusers => {
     console.log({ allusers });
     const createUsersHtml = () => {
-        allusershtml.innerHTML = "";
+        allusersHtml.innerHTML = "";
         for(const user in allusers){
             const li = document.createElement('li');
             li.textContent = `${user===username.value ? '(You)' : ""}`;
@@ -76,6 +76,12 @@ socket.on("joined", allusers => {
 
     }
     createUsersHtml();
+});
+socket.on("offer",async ({from,to,offer})=>{
+    const pc = PeerConnection.getInstance();
+    await pc.setRemoteDescription(offer);
+    const answer = await pc.createAnswer();
+    await pc.setLocalDescription(answer);
 })
 
 const startCall = async (user)=>{
